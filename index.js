@@ -92,6 +92,13 @@ const locations = [
         "button functions": [button1.onclick = restart,button2.onclick = restart,button3.onclick = restart],
         text: "You die. ☠️"
     }
+    ,
+    {
+        name: "win",
+        "button text": ["REPLAY?","REPLAY?","REPLAY?"],
+        "button functions": [button1.onclick = restart,button2.onclick = restart,button3.onclick = restart],
+        text: "You defeat the dragon! YOU WIN THE GAME! &#x1F389;"
+    }
 ]
 
 // initialize buttons
@@ -106,7 +113,7 @@ function update (location) {
     button1.innerText = location["button text"][0];
     button2.innerText = location["button text"][1];
     button3.innerText = location["button text"][2];
-    text.innerText = location.text;
+    text.innerHTML = location.text;
 
     button1.onclick = location["button functions"][0];
     button2.onclick = location["button functions"][1];
@@ -205,7 +212,11 @@ function attack () {
     if (health <= 0) {
         lose();
     } else if (monsterHealth <= 0) {
+        if (fighting === 2) {
+            winGame()
+        } else {
         defeatMonster();
+        }
     }
 }
 
@@ -223,6 +234,10 @@ function defeatMonster () {
 
 function lose () {
  update(locations[5])
+}
+
+function winGame () {
+    udtate(locations[6]);
 }
 
 function restart () {
