@@ -209,6 +209,7 @@ function attack() {
     healthText.innerText = health;
     monsterHealthText.innerText = monsterHealth;
     if (health <= 0) {
+        healthText.innerText = 0
         lose();
     } else if (monsterHealth <= 0) {
         if (fighting === 2) {
@@ -287,6 +288,7 @@ function pick(guess) {
     health -= 10;
     healthText.innerText = health;
     if (health <= 0) {
+        healthText.innerText = 0
         lose()
     }
  }
